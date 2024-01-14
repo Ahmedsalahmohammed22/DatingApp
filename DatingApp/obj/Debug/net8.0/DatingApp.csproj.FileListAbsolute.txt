@@ -161,3 +161,4 @@ D:\projects_GitHub\DatingApp\DatingApp\obj\Debug\net8.0\DatingApp.pdb
 D:\projects_GitHub\DatingApp\DatingApp\obj\Debug\net8.0\DatingApp.genruntimeconfig.cache
 D:\projects_GitHub\DatingApp\DatingApp\obj\Debug\net8.0\ref\DatingApp.dll
 D:\projects_GitHub\DatingApp\DatingApp\bin\Debug\net8.0\global.json
+D:\projects_GitHub\DatingApp\DatingApp\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
