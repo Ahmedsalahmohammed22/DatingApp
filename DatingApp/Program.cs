@@ -2,6 +2,7 @@
 using DatingApp.Data;
 using DatingApp.Extensions;
 using DatingApp.Interfaces;
+using DatingApp.Middleware;
 using DatingApp.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,7 @@ namespace DatingApp
 
 
             var app = builder.Build();
+            app.UseMiddleware<ExceptionMiddleware>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -36,12 +38,11 @@ namespace DatingApp
                 app.UseSwaggerUI(); 
             }
 
+            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
-            app.UseHttpsRedirection();
             app.MapControllers();
 
             app.Run();
