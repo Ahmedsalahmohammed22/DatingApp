@@ -12,6 +12,8 @@ namespace DatingApp.Extensions
             services.AddDbContext<AppDbContext>(x => x.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
             services.AddCors();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             return services;
 
         }
