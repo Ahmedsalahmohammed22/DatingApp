@@ -22,12 +22,14 @@ namespace DatingApp.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetUsers()
         {
             var users = await _userRepository.GetMembersAsync();
             return Ok(users);
         }
         [HttpGet("{username}")]
+        [Authorize]
         public async Task<IActionResult> GetUser(string username)
         {
             var user = await _userRepository.GetMemberAsync(username);
