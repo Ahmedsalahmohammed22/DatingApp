@@ -165,3 +165,5 @@ D:\projects_GitHub\DatingApp\DatingApp\obj\Debug\net8.0\DatingApp.genruntimeconf
 D:\projects_GitHub\DatingApp\DatingApp\obj\Debug\net8.0\ref\DatingApp.dll
 D:\projects_GitHub\DatingApp\DatingApp\bin\Debug\net8.0\AutoMapper.dll
 D:\projects_GitHub\DatingApp\DatingApp\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\projects_GitHub\DatingApp\DatingApp\bin\Debug\net8.0\CloudinaryDotNet.dll
+D:\projects_GitHub\DatingApp\DatingApp\bin\Debug\net8.0\Newtonsoft.Json.dll

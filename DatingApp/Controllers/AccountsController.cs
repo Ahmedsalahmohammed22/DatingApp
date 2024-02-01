@@ -15,11 +15,15 @@ namespace DatingApp.Controllers
     {
         private readonly AppDbContext _context;
         private readonly ITokenService _tokenService;
+        private readonly IUserRepository _userRepository;
 
-        public AccountsController(AppDbContext context , ITokenService tokenService)
+
+        public AccountsController(AppDbContext context , ITokenService tokenService , IUserRepository userRepository)
         {
             _context = context;
             _tokenService = tokenService;
+            _userRepository = userRepository;
+
         }
 
         [HttpPost("register")] // POST: api/Accounts/register
@@ -39,14 +43,15 @@ namespace DatingApp.Controllers
             return Ok(new UserDto
             {
                 UserName = user.Name,
-                Token = _tokenService.CreateToken(user)
+                Token = _tokenService.CreateToken(user),
+                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
             });
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto loginDto)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(x => x.Name == loginDto.UserName);
+            var user = await _context.Users.Include(p => p.Photos).SingleOrDefaultAsync(x => x.Name == loginDto.UserName);
             if (user == null) return Unauthorized("Invalid Name");
             using var hmac = new HMACSHA512(user.PasswordSalt);
             var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
@@ -57,7 +62,8 @@ namespace DatingApp.Controllers
             return Ok(new UserDto
             {
                 UserName = user.Name,
-                Token = _tokenService.CreateToken(user)
+                Token = _tokenService.CreateToken(user),
+                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
             });
 
         }
