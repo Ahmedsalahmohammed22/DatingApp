@@ -3,5 +3,6 @@ export interface User{
     token:string;
     photoUrl : string,
     gender : string,
-    knownAs : string
+    knownAs : string,
+    roles : string[]
 }

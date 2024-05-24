@@ -21,7 +21,7 @@ namespace DatingApp.Data
 
         public async Task<MemberDto> GetMemberAsync(string username)
         {
-            return await _context.Users.Where(x => x.Name == username)
+            return await _context.Users.Where(x => x.UserName == username)
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
         }
@@ -29,7 +29,7 @@ namespace DatingApp.Data
         public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
         {
             var query = _context.Users.AsQueryable();
-            query = query.Where(u => u.Name != userParams.CurrentUsername);
+            query = query.Where(u => u.UserName != userParams.CurrentUsername);
             query = query.Where(u => u.Gender == userParams.Gender);
 
             var minDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MaxAge-1));
@@ -58,7 +58,7 @@ namespace DatingApp.Data
         {
             return await _context.Users
                 .Include(p => p.Photos)
-                .SingleOrDefaultAsync(x => x.Name == name);
+                .SingleOrDefaultAsync(x => x.UserName == name);
 
         }
 
@@ -69,7 +69,7 @@ namespace DatingApp.Data
                 .ToListAsync();
         }
 
-        public async Task<bool> SaveAllAsync()
+            public async Task<bool> SaveAllAsync()
         {
             return await _context.SaveChangesAsync() > 0;
         }

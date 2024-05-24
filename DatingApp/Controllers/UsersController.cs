@@ -26,12 +26,12 @@ namespace DatingApp.Controllers
             _photoService = photoService;
         }
 
+        //[Authorize(Roles ="Admin")]
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
         {
             var currentUser = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
-            userParams.CurrentUsername = currentUser.Name;
+            userParams.CurrentUsername = currentUser.UserName;
             if (string.IsNullOrEmpty(userParams.Gender))
             {
                 userParams.Gender = currentUser.Gender == "male" ? "female" : "male";
@@ -41,8 +41,8 @@ namespace DatingApp.Controllers
             Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages));
             return Ok(users);
         }
+        [Authorize(Roles ="Member")]
         [HttpGet("{username}")]
-        [Authorize]
         public async Task<IActionResult> GetUser(string username)
         {
             var user = await _userRepository.GetMemberAsync(username);
@@ -75,7 +75,7 @@ namespace DatingApp.Controllers
             if(await _userRepository.SaveAllAsync())
             {
                 return CreatedAtAction(nameof(GetUser), new
-                { username = user.Name },
+                { username = user.UserName },
                 _mapper.Map<PhotoDto>(photo)
                 );
             };

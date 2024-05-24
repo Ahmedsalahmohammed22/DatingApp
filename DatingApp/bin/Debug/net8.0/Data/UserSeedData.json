@@ -1,6 +1,6 @@
 ﻿[
   {
-    "Name": "Angelina",
+    "UserName": "Angelina",
     "Gender": "female",
     "DateOfBirth": "1981-03-06",
     "KnownAs": "Angelina",
@@ -19,7 +19,7 @@
     ]
   },
   {
-    "Name": "Isabella",
+    "UserName": "Isabella",
     "Gender": "female",
     "DateOfBirth": "1971-01-02",
     "KnownAs": "Isabella",
@@ -38,7 +38,7 @@
     ]
   },
   {
-    "Name": "Beulah",
+    "UserName": "Beulah",
     "Gender": "female",
     "DateOfBirth": "1966-07-17",
     "KnownAs": "Beulah",
@@ -57,7 +57,7 @@
     ]
   },
   {
-    "Name": "Rena",
+    "UserName": "Rena",
     "Gender": "female",
     "DateOfBirth": "1950-07-01",
     "KnownAs": "Rena",
@@ -76,7 +76,7 @@
     ]
   },
   {
-    "Name": "Avis",
+    "UserName": "Avis",
     "Gender": "female",
     "DateOfBirth": "1976-11-24",
     "KnownAs": "Avis",
@@ -95,7 +95,7 @@
     ]
   },
   {
-    "Name": "Nelson",
+    "UserName": "Nelson",
     "Gender": "male",
     "DateOfBirth": "1986-04-23",
     "KnownAs": "Nelson",
@@ -114,7 +114,7 @@
     ]
   },
   {
-    "Name": "Guerrero",
+    "UserName": "Guerrero",
     "Gender": "male",
     "DateOfBirth": "1999-12-12",
     "KnownAs": "Guerrero",
@@ -133,7 +133,7 @@
     ]
   },
   {
-    "Name": "Glass",
+    "UserName": "Glass",
     "Gender": "male",
     "DateOfBirth": "1981-01-22",
     "KnownAs": "Glass",
@@ -152,7 +152,7 @@
     ]
   },
   {
-    "Name": "Whitaker",
+    "UserName": "Whitaker",
     "Gender": "male",
     "DateOfBirth": "1957-03-24",
     "KnownAs": "Whitaker",
@@ -171,7 +171,7 @@
     ]
   },
   {
-    "Name": "Harding",
+    "UserName": "Harding",
     "Gender": "male",
     "DateOfBirth": "1960-12-09",
     "KnownAs": "Harding",
