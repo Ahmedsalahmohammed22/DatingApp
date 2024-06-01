@@ -5,6 +5,7 @@ using DatingApp.Interfaces;
 using DatingApp.Middleware;
 using DatingApp.Models;
 using DatingApp.Services;
+using DatingApp.SignalR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -40,12 +41,17 @@ namespace DatingApp
                 app.UseSwaggerUI();
             }
 
-            app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+            app.UseCors(builder => builder
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials()
+            .WithOrigins("https://localhost:4200"));
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
+            app.MapHub<PresenceHub>("hubs/presence");
 
             using var scope = app.Services.CreateScope();
             var services = scope.ServiceProvider;
