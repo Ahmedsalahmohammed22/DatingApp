@@ -155,6 +155,34 @@ namespace DatingApp.Migrations
                     b.ToTable("AspNetUserRoles", (string)null);
                 });
 
+            modelBuilder.Entity("DatingApp.Models.Connection", b =>
+                {
+                    b.Property<string>("ConnectionId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("GroupName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ConnectionId");
+
+                    b.HasIndex("GroupName");
+
+                    b.ToTable("Connections");
+                });
+
+            modelBuilder.Entity("DatingApp.Models.Group", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Name");
+
+                    b.ToTable("Groups");
+                });
+
             modelBuilder.Entity("DatingApp.Models.Message", b =>
                 {
                     b.Property<int>("Id")
@@ -344,6 +372,13 @@ namespace DatingApp.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("DatingApp.Models.Connection", b =>
+                {
+                    b.HasOne("DatingApp.Models.Group", null)
+                        .WithMany("connections")
+                        .HasForeignKey("GroupName");
+                });
+
             modelBuilder.Entity("DatingApp.Models.Message", b =>
                 {
                     b.HasOne("DatingApp.Models.AppUser", "Recipient")
@@ -447,6 +482,11 @@ namespace DatingApp.Migrations
                     b.Navigation("UserRoles");
 
                     b.Navigation("likedUsers");
+                });
+
+            modelBuilder.Entity("DatingApp.Models.Group", b =>
+                {
+                    b.Navigation("connections");
                 });
 #pragma warning restore 612, 618
         }

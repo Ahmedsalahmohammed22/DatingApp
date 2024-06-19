@@ -30,6 +30,9 @@ namespace DatingApp
             builder.Services.AddApplicationServices(builder.Configuration);
             builder.Services.AddApplicationIdentity(builder.Configuration);
 
+            builder.Logging.AddConsole(); // Add console logging for easier debugging
+            builder.Logging.AddDebug(); // Add debug logging
+
 
             var app = builder.Build();
             app.UseMiddleware<ExceptionMiddleware>();
@@ -52,6 +55,8 @@ namespace DatingApp
 
             app.MapControllers();
             app.MapHub<PresenceHub>("hubs/presence");
+            app.MapHub<MessageHub>("hubs/message");
+
 
             using var scope = app.Services.CreateScope();
             var services = scope.ServiceProvider;
